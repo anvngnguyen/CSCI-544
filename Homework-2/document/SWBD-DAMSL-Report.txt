@@ -1,0 +1,42 @@
+Assignment 2 Report
+
+Name: An Nguyen
+
+1. Describe how you evaluated your baseline and advanced features:
+- Randomly selected 25% of the data (269 files) from the train folder and put them into dev folder
+
+2. Accuracy of baseline features during your evaluation: 0.7273193818783145
+
+3. Describe your advanced feature set:
+All the baseline_tagger feature with a modification for first utterance of each dialogue
+    - Marking the first utterance of each dialogue: Modified from baseline_tagger. Instead of only include is_first
+    feature for the first utterance, now is_first=True for the first utterance and is_first=False for every other
+    utterances
+New Features:
+    - Marking the last utterance of each dialogue: is_last=True for the last utterance and is_last=False for every other
+    utterances
+    - Length of the part-of-speech in each utterance: If there is a part-of-speech in the utterance, create a feature
+    represents the length of the part-of-speech
+    - First part-of-speech of each utterance: Marking the first pos in the utterance
+    - Bigram
+        - bigram part-of-speech: For every word in the utterance, include its previous word pos in the feature. If
+        it is the first word in the utterance, its previous word pos will be ""
+        - bigram token: For every word in the utterance, include its previous word pos in the feature. If it is the
+        first word in the utterance, its previous word pos will be ""
+
+4. If you tried and rejected alternate advanced feature sets, please describe them:
+- First token of each utterance:
+    - Description: Marking the first token in the utterance
+    - Reason for Rejection: decrease in accuracy
+- Last part-of-speech of each utterance
+    - Description: Marking the last pos in the utterance
+    - Reason for Rejection: decrease in accuracy
+- Last token of each utterance:
+    - Description: Marking the last token of every utterance in the dialogue
+    - Reason for Rejection: decrease in accuracy
+- Trigram:
+    - Description: similar to bigram but using a combination of (previous word, current word, next word). If it is the
+    last word in the utterance, the next word will be ""
+    - Reason for Rejection: less accurate than Bigram if used individually. If used alongside Bigram, accuracy reduced
+
+5. Accuracy of advanced features was: 0.7505844785311057

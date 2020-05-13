@@ -1,0 +1,72 @@
+Assignment 1 Report
+
+Name: An Nguyen
+
+1. Performance on the development data with 100% of the training data
+1a. spam precision: 0.993088194636439
+1b. spam recall: 0.9774149659863945
+1c. spam F1 score: 0.9851892484914975
+1d. ham precision: 0.9467265725288831
+1e. ham recall: 0.9833333333333333
+1f. ham F1 score: 0.9646827992151734
+
+2. Performance on the development data with 10% of the training data
+2a. spam precision: 0.9943052391799544
+2b. spam recall: 0.950204081632653
+2c. spam F1 score: 0.9717545568387366
+2d. ham precision: 0.8899579073962718
+2e. ham recall: 0.9866666666666667
+2f. ham F1 score: 0.935820423648435
+
+3. Description of enhancement(s) you tried (e.g., different approach(es) to smoothing, treating common words differently
+, dealing with unknown words differently):
+Enhancement:
+- Remove punctuation from the text using string.punctuation
+- Common tokens, whose probability are higher than 0.001 in both spam and ham emails, are ignored
+- Unseen tokens' probability will calculated using Zipf's Laws:
+    + Step 1: Finding the token with lowest probability (or frequency, as in this scenario, they are interchangeable)
+    in spam and ham emails and their ranking kth.
+    + Step 2: Assuming the unseen tokens will have an even lower ranking than the lowest ranking token. In this case,
+    (k + 1)th
+    + Step 3: Calculating the predicted probability (frequency) of the unseen tokens using the formula found from this
+    link: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4176592
+Explanation:
+- By removing punctuation, the model will assume "subject:" and "subject" are the same words, which makes sense
+considering we have already established that "Subject" and "subject" are the same word. Also, in casual speaking,
+punctuation are usually implied by context, so their existence in a sentence structure might not hold too much weight.
+- Ignoring common tokens in both spam and ham emails helped improving the accuracy of a word since it increases the
+weight of more obscure tokens when determining the probability of spam or ham.
+- Zipf's Laws makes sense since it somewhat imitate the effect of add-one smoothing
+
+4. Best performance results based on enhancements. Note that these could be the same or worse than the standard implementation.
+Removing punctuation:
+4a. spam precision: 0.9969461410327596
+4b. spam recall: 0.9771428571428571
+4c. spam F1 score: 0.9869451697127937
+4d. ham precision: 0.9465988556897648
+4e. ham recall: 0.9926666666666667
+4f. ham F1 score: 0.9690855841197527
+
+Ignoring common tokens:
+4a. spam precision: 0.9947973713033954
+4b. spam recall: 0.9885714285714285
+4c. spam F1 score: 0.9916746280878941
+4d. ham precision: 0.9724228496388706
+4e. ham recall: 0.9873333333333333
+4f. ham F1 score: 0.9798213695004961
+
+Using Zipf's Laws:
+4a. spam precision: 0.992553778268064
+4b. spam recall: 0.9793197278911565
+4c. spam F1 score: 0.9858923435145871
+4d. ham precision: 0.9509360877985797
+4e. ham recall: 0.982
+4f. ham F1 score: 0.9662184322728764
+
+Using all three enhancements
+4a. spam precision: 0.9913255624830577
+4b. spam recall: 0.9951020408163266
+4c. spam F1 score: 0.9932102118413906
+4d. ham precision: 0.9878869448183042
+4e. ham recall: 0.9786666666666667
+4f. ham F1 score: 0.9832551908908239
