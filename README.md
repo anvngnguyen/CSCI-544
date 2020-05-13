@@ -7,7 +7,8 @@
 <ul>
     <li>
         Task 1: Implementing a standard Naive Bayes classfier with add-one 
-        smoothing to prevent the probability becomes 0 for unseen data
+        smoothing to prevent the probability becomes 0 for unseen word in 
+        the testing data
     </li>
     <li>
         Task 2: Experimenting by training the classifier with only 10% of the 
@@ -23,7 +24,7 @@
                 spam and ham probability to 1
             </li>
             <li>
-                Using Zipf's Laws to calculate probability of unseen data
+                Using Zipf's Laws to calculate probability of unseen words
                 instead of add-one smoothing
             </li>
             <li>
